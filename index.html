@@ -26,49 +26,49 @@
 			<div class="slides">
 				<section>Section 1</section>
 				<section>
-					<section>
+					<section class="section-1">
 						Section 1: A
 						<p> Section 1:A Slide details</p>
 					</section>
-					<section>
+					<section class="section-1">
 						Section 1: B
 						<p> Section 1:B Slide details</p>
 					</section>
-					<section>
+					<section class="section-1">
 						Section 1: C
 						<p> Section 1:C Slide details</p>
 					</section>
 				</section>
 				<section>Section 2</section>
 				<section>
-					<section>
+					<section class="section-2">
 						Section 2: A
 						<p> Section 2:A Slide details</p>
 					</section>
-					<section>
+					<section class="section-2">
 						Section 2: B
 						<p> Section 2:B Slide details</p>
 					</section>
-					<section>
+					<section class="section-2">
 						Section 2: C
 						<p> Section 2:C Slide details</p>
 					</section>
-					<section>
+					<section class="section-2">
 						Section 2: D
 						<p> Section 2:D Slide details</p>
 					</section>
-					<section>
+					<section class="section-2">
 						Section 2: E
 						<p> Section 2:E Slide details</p>
 					</section>
 				</section>
 				<section>Section 3</section>
 				<section>
-					<section>
+					<section class="section-3">
 						Section 3: A
 						<p> Section 3:A Slide details</p>
 					</section>
-					<section>
+					<section class="section-3">
 						Section 3: B
 						<p> Section 3:B Slide details</p>
 					</section>
@@ -79,6 +79,38 @@
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
+		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+		
+		<script>
+			(function($){
+ 
+			    $.fn.shuffle = function() {
+			 
+			        var allElems = this.get(),
+			            getRandom = function(max) {
+			                return Math.floor(Math.random() * max);
+			            },
+			            shuffled = $.map(allElems, function(){
+			                var random = getRandom(allElems.length),
+			                    randEl = $(allElems[random]).clone(true)[0];
+			                allElems.splice(random, 1);
+			                return randEl;
+			           });
+			 
+			        this.each(function(i){
+			            $(this).replaceWith($(shuffled[i]));
+			        });
+			 
+			        return $(shuffled);
+			 
+			    };
+			 
+			})(jQuery);
+
+			$('.section-1').shuffle();
+			$('.section-2').shuffle();
+			$('.section-3').shuffle();
+		</script>
 
 		<script>
 			// More info about config & dependencies:
