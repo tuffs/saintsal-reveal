@@ -27,7 +27,8 @@
           Create A New Section, Add Section, Section class="section-n",
           Go to Bottom of Page where you see $('section-n').shuffle and
           add in new $('section-x').shuffle where x is the number of your
-          new section  -->
+          new section follow the shuffle function call to
+          $('section-x').slice(1).remove(); to remove superfluous basement slides-->
     <!--  Commented out section has been added below section 3 for example
           with commented out jQuery function call for section X in code -->
     <div class="reveal">
@@ -35,53 +36,54 @@
         <section>INTRO</section>
         <section>Section 1</section>
         <section>
-          <section class="section-1">
+          <section class="subsection section-1">
             Section 1: A
-            <p> Section 1:A Slide details</p>
+            <p> Section 1: A Slide details</p>
           </section>
           <section class="section-1">
             Section 1: B
-            <p> Section 1:B Slide details</p>
+            <p> Section 1: B Slide details</p>
           </section>
           <section class="section-1">
             Section 1: C
-            <p> Section 1:C Slide details</p>
+            <p> Section 1: C Slide details</p>
           </section>
         </section>
         <section>Section 2</section>
         <section>
           <section class="section-2">
             Section 2: A
-            <p> Section 2:A Slide details</p>
+            <p> Section 2: A Slide details</p>
           </section>
           <section class="section-2">
             Section 2: B
-            <p> Section 2:B Slide details</p>
+            <p> Section 2: B Slide details</p>
           </section>
           <section class="section-2">
             Section 2: C
-            <p> Section 2:C Slide details</p>
+            <p> Section 2: C Slide details</p>
           </section>
           <section class="section-2">
             Section 2: D
-            <p> Section 2:D Slide details</p>
+            <p> Section 2: D Slide details</p>
           </section>
           <section class="section-2">
             Section 2: E
-            <p> Section 2:E Slide details</p>
+            <p> Section 2: E Slide details</p>
           </section>
         </section>
         <section>Section 3</section>
         <section>
-          <section class="section-3">
+          <sectiond class="section-3">
             Section 3: A
-            <p> Section 3:A Slide details</p>
+            <p> Section 3: A Slide details</p>
           </section>
           <section class="section-3">
             Section 3: B
-            <p> Section 3:B Slide details</p>
+            <p> Section 3: B Slide details</p>
           </section>
         </section>
+        <section data-state="lastslide"></section>
 
         <!-- EXAMPLE NEW SECTION -->
 
@@ -130,14 +132,30 @@
               return $(shuffled);
        
           };
+
+          $.fn.isInViewport = function() {
+
+              var elementTop = $(this).offset().top;
+              var elementBottom = elementTop + $(this).outerHeight();
+              var viewportTop = $(window).scrollTop();
+              var viewportBottom = viewportTop + $(window).height();
+              return elementBottom > viewportTop && elementTop < viewportBottom;
+          };
        
       })(jQuery);
 
       $('.section-1').shuffle();
+        $('.section-1').slice(1).remove();
+
       $('.section-2').shuffle();
+        $('.section-2').slice(1).remove();
+
       $('.section-3').shuffle();
+        $('.section-3').slice(1).remove();
+
       // EXAMPLE NEW SECTION SHUFFLE CALL
       // $('.section-x').shuffle();
+        // $('.section-x').slice(1).remove();
     </script>
 
     <script>
@@ -152,6 +170,10 @@
           { src: 'plugin/notes/notes.js', async: true },
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
         ]
+      });
+
+      Reveal.addEventListener('lastslide', function() {
+        window.location.reload();
       });
     </script>
   </body>
